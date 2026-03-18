@@ -1,116 +1,181 @@
-/* ------------------------ */
-/* GENEL ARKA PLAN + YAZI */
-/* ------------------------ */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* --- GENEL AYARLAR --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(120deg, #f0f4f8, #d9e2ec); /* soft pastel gradient */
+    box-sizing: border-box;
 }
 
-/* ------------------------ */
-/* NAV BAR STİLİ */
-/* ------------------------ */
+html {
+    scroll-behavior: smooth; /* Menüye tıklayınca yumuşak kayma sağlar */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #00fff0;
+    line-height: 1.6;
+    
+    /* ARKA PLAN RESMİ (JPEG UZANTILI) */
+    /* DİKKAT: 'resim 2/arkaplan.jpeg' yazan yere kendi resminin adını/yolunu yazmalısın! */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('resim 2/1370478.jpeg');
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+}
+
+/* --- NAVİGASYON (MENÜ) --- */
 nav {
-    background: rgba(44, 62, 80, 0.9); /* yarı şeffaf koyu mavi */
-    color: white;
-    padding: 1rem;
-    text-align: center;
     position: sticky;
     top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav a {
-    color: white;
-    margin: 0 15px;
+    color: #00fff0;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
-/* ------------------------ */
-/* HEADER (GİRİŞ BÖLÜMÜ) */
-/* ------------------------ */
+nav a:hover {
+    color: #00fff0;
+}
+
+/* --- HEADER (BAŞLIK VE PROFİL) --- */
 header {
-    color: #2c3e50;
-    padding: 60px 20px;
     text-align: center;
+    padding: 80px 20px 40px;
 }
 
 header img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    border: 5px solid white;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; 
     object-fit: cover;
-    display: block;
-    margin: 0 auto 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
 }
 
-/* ------------------------ */
-/* CONTAINER STİLİ */
-/* ------------------------ */
+header img:hover {
+    transform: scale(1.05); 
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #dfe6e9;
+}
+
+/* --- İÇERİK KUTULARI (ŞEFFAF GRADIENT + 3D GÖLGE) --- */
 .container {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9); /* hafif şeffaf beyaz kutular */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 20px;
+
+    /* 1. ŞEFFAF GRADIENT: Arka plan resmin mükemmel görünecek. Sol üstten hafif ışık, sağ alta doğru hafif koyuluk. */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+
+    /* 2. KESKİN DERİNLİK (Shadow): Saatteki o tok kabartma hissi */
+    box-shadow:
+        8px 8px 16px rgba(0, 0, 0, 0.5), /* Kutuyu havaya kaldıran dış gölge */
+        inset 2px 2px 3px rgba(255, 255, 255, 0.2), /* Kutu içindeki üst/sol keskin ışık */
+        inset -2px -2px 4px rgba(0, 0, 0, 0.6); /* Kutu içindeki alt/sağ keskin gölge */
+
+    /* Ekstra netlik için çok ince şeffaf bir çizgi */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ------------------------ */
-/* BAŞLIKLAR */
-/* ------------------------ */
-h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+/* --- BAŞLIKLAR (GRADIENT + SHADOW TEXT EFEKTİ) --- */
+.container h2 {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
     padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Yazının içini metalik/turkuaz bir renk geçişiyle (gradient) dolduruyoruz */
+    background: linear-gradient(to bottom, #ffffff, #00f3ff);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+
+    /* Yazının arkasına saatteki gibi sert, belirgin bir gölge atıyoruz */
+    filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.8));
 }
 
-/* ------------------------ */
-/* BUTON STİLİ */
-/* ------------------------ */
+/* --- YETENEKLER LİSTESİ --- */
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+ul li {
+    background: rgba(0, 0, 0, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00f2fe;
+    color: #00f2fe;
+    transform: translateY(-3px);
+}
+
+/* --- BUTON VE İLETİŞİM --- */
+#iletisim p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
 .btn {
     display: inline-block;
-    background: #3498db;
-    color: white;
-    padding: 10px 20px;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #00fffa;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
-    background: #2980b9;
+    background: #00f2fe;
+    color: #000;
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
 }
 
-/* ------------------------ */
-/* FOOTER */
-/* ------------------------ */
+/* --- FOOTER --- */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 30px;
+    margin-top: 50px;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    color: #00fff0;
     font-size: 0.9rem;
-    color: #777;
-}
-
-/* ------------------------ */
-/* RESPONSIVE */
-/* ------------------------ */
-@media screen and (max-width: 500px) {
-    header img {
-        width: 100px;
-        height: 100px;
-        border-width: 3px;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
 }

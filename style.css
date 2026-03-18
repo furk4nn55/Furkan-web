@@ -114,6 +114,7 @@ header p {
     background: linear-gradient(to bottom, #ffffff, #00f3ff);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent; 
+    background-clip: text;
 
     /* Yazının arkasına saatteki gibi sert, belirgin bir gölge atıyoruz */
     filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.8));

@@ -1,182 +1,170 @@
-/* --- GENEL AYARLAR --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* --- SİBERPUNK GOOGLE FONTLARI --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth; /* Menüye tıklayınca yumuşak kayma sağlar */
-}
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #00fff0;
+    font-family: 'Rajdhani', sans-serif;
+    color: #00fff0; /* <-- YAZILAR TEKRAR ORİJİNAL NEON RENGİNE DÖNDÜ */
     line-height: 1.6;
-    
-    /* ARKA PLAN RESMİ (JPEG UZANTILI) */
-    /* DİKKAT: 'resim 2/arkaplan.jpeg' yazan yere kendi resminin adını/yolunu yazmalısın! */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('1370478.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('1370478.jpeg');
     background-size: cover; 
     background-position: center; 
     background-attachment: fixed; 
     background-repeat: no-repeat; 
+    overflow-x: hidden; 
+    cursor: none; 
+}
+a, button, input, textarea { cursor: none; }
+
+/* Başlıklar */
+header h1, .container h2, .glitch {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    color: #00fff0;
+}
+
+/* --- 3D PARÇACIK AĞI (CANVAS) --- */
+#particle-canvas {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1; pointer-events: none;
+    opacity: 0.6; 
+}
+
+nav, header, .container, footer {
+    position: relative; z-index: 10;
 }
 
 /* --- NAVİGASYON (MENÜ) --- */
 nav {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.3); 
+    position: sticky; top: 0; display: flex; justify-content: center; gap: 30px;
+    padding: 20px; 
+    background: rgba(0, 0, 0, 0.3); /* Menü şeffaf */
     backdrop-filter: blur(10px);
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000; border-bottom: 1px solid rgba(0, 255, 240, 0.1);
 }
+nav a { color: #00fff0; text-decoration: none; font-weight: 600; font-size: 1.2rem; transition: all 0.3s ease; }
+nav a:hover { color: #ffffff; text-shadow: 0 0 8px rgba(0, 255, 240, 0.4); }
 
-nav a {
-    color: #00fff0;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #00fff0;
-}
-
-/* --- HEADER (BAŞLIK VE PROFİL) --- */
-header {
-    text-align: center;
-    padding: 80px 20px 40px;
-}
-
+/* --- HEADER --- */
+header { text-align: center; padding: 80px 20px 40px; }
 header img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%; 
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(0, 255, 240, 0.3); box-shadow: 0 0 10px rgba(0, 255, 240, 0.2); /* Parlama düşük */
+    margin-bottom: 20px; transition: transform 0.3s ease;
 }
+header h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 0 0 8px rgba(0, 255, 240, 0.3); }
 
-header img:hover {
-    transform: scale(1.05); 
+.typing-container {
+    font-size: 1.4rem; color: #00fff0; display: inline-block;
+    border-right: 2px solid rgba(0, 255, 240, 0.7); padding-right: 5px;
+    animation: blink-caret 0.75s step-end infinite; min-height: 30px; 
 }
+@keyframes blink-caret { 50% { border-color: transparent; } }
 
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-}
-
-header p {
-    font-size: 1.2rem;
-    color: #dfe6e9;
-}
-
-/* --- İÇERİK KUTULARI (ŞEFFAF GRADIENT + 3D GÖLGE) --- */
+/* --- İÇERİK KUTULARI (Şeffaf Cam Efekti) --- */
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 20px;
-
-    /* 1. ŞEFFAF GRADIENT: Arka plan resmin mükemmel görünecek. Sol üstten hafif ışık, sağ alta doğru hafif koyuluk. */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
-
-    /* 2. KESKİN DERİNLİK (Shadow): Saatteki o tok kabartma hissi */
-    box-shadow:
-        8px 8px 16px rgba(0, 0, 0, 0.5), /* Kutuyu havaya kaldıran dış gölge */
-        inset 2px 2px 3px rgba(255, 255, 255, 0.2), /* Kutu içindeki üst/sol keskin ışık */
-        inset -2px -2px 4px rgba(0, 0, 0, 0.6); /* Kutu içindeki alt/sağ keskin gölge */
-
-    /* Ekstra netlik için çok ince şeffaf bir çizgi */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px; margin: 40px auto; padding: 40px; border-radius: 15px;
+    background: linear-gradient(135deg, rgba(0, 255, 240, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); 
+    border: 1px solid rgba(0, 255, 240, 0.15);
+    backdrop-filter: blur(8px);
 }
-
-/* --- BAŞLIKLAR (GRADIENT + SHADOW TEXT EFEKTİ) --- */
 .container h2 {
-    margin-bottom: 20px;
-    font-size: 2.2rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
-    /* Yazının içini metalik/turkuaz bir renk geçişiyle (gradient) dolduruyoruz */
-    background: linear-gradient(to bottom, #ffffff, #00f3ff);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    background-clip: text;
-
-    /* Yazının arkasına saatteki gibi sert, belirgin bir gölge atıyoruz */
-    filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.8));
+    margin-bottom: 20px; font-size: 2.2rem; padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 255, 240, 0.2); text-shadow: 0 0 5px rgba(0, 255, 240, 0.3);
 }
+.container p { font-size: 1.1rem; color: #00fff0; }
 
-/* --- YETENEKLER LİSTESİ --- */
-ul {
-    list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
+/* Yetenekler */
+ul { list-style-type: none; display: flex; flex-wrap: wrap; gap: 15px; }
 ul li {
-    background: rgba(0, 0, 0, 0.4); 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-ul li:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #00f2fe;
-    color: #00f2fe;
-    transform: translateY(-3px);
-}
-
-/* --- BUTON VE İLETİŞİM --- */
-#iletisim p {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 25px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #00fffa;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background: #00f2fe;
-    color: #000;
-    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
-    transform: translateY(-2px);
-}
-
-/* --- FOOTER --- */
-footer {
-    text-align: center;
-    padding: 30px;
-    margin-top: 50px;
-    background: transparent;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    background: rgba(0, 0, 0, 0.2); 
+    border: 1px solid rgba(0, 255, 240, 0.2); 
+    padding: 10px 20px; border-radius: 5px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;
     color: #00fff0;
-    font-size: 0.9rem;
+}
+ul li:hover { background: rgba(0, 255, 240, 0.1); color: #ffffff; transform: translateY(-3px); box-shadow: 0 0 10px rgba(0,255,240,0.2); }
+
+/* Projeler */
+.projects-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.project-card {
+    flex: 1 1 300px; 
+    background: rgba(0, 0, 0, 0.2); 
+    padding: 20px; border-radius: 10px;
+    border: 1px solid rgba(0, 255, 240, 0.15); transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.project-card:hover { border-color: rgba(0, 255, 240, 0.6); box-shadow: 0 0 12px rgba(0,255,240,0.15); }
+.project-card h3 { margin-bottom: 10px; color: #00fff0; font-family: 'Orbitron', sans-serif; }
+.project-card p { color: #00fff0; }
+
+/* Butonlar */
+.btn {
+    display: inline-block; margin-top: 15px; padding: 12px 25px;
+    background: rgba(0, 255, 240, 0.05); border: 1px solid rgba(0, 255, 240, 0.4);
+    color: #00fff0; text-decoration: none; font-weight: bold; border-radius: 5px;
+    transition: all 0.3s ease; cursor: none; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.btn:hover { background: rgba(0, 255, 240, 0.8); color: #000; box-shadow: 0 0 12px rgba(0, 255, 240, 0.4); transform: translateY(-2px); }
+
+/* Form */
+.contact-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; border-top: 1px solid rgba(0,255,240,0.1); padding-top: 20px; }
+.contact-form input, .contact-form textarea {
+    width: 100%; padding: 15px; border-radius: 5px; 
+    background: rgba(0, 0, 0, 0.3); 
+    border: 1px solid rgba(0, 255, 240, 0.2); color: #00fff0; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; outline: none; transition: 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: #00fff0; box-shadow: 0 0 8px rgba(0, 255, 240, 0.2); background: rgba(0, 0, 0, 0.5); }
+
+/* --- FOOTER VE SAĞ ALT KÖŞE TERMİNAL BUTONU --- */
+footer { text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid rgba(0, 255, 240, 0.1); font-size: 1rem; color: #00fff0; }
+
+#terminal-btn {
+    position: fixed; bottom: 30px; right: 30px; 
+    background: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(0, 255, 0, 0.5); color: #0f0;
+    font-family: 'Share Tech Mono', monospace; font-size: 1.2rem; font-weight: bold;
+    width: 50px; height: 50px; border-radius: 50%; display: flex;
+    justify-content: center; align-items: center; cursor: none;
+    z-index: 99999; box-shadow: 0 0 10px rgba(0, 255, 0, 0.2); transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+#terminal-btn:hover { background: #0f0; color: #000; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); transform: scale(1.1); }
+
+/* --- GİZLİ TERMİNAL VE HACKED EKRANI --- */
+#terminal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); color: #0f0; font-family: 'Share Tech Mono', monospace; z-index: 100000; padding: 30px; overflow-y: auto; font-size: 1.2rem; text-shadow: 0 0 3px rgba(0, 255, 0, 0.5); }
+#terminal-output { white-space: pre-wrap; margin-bottom: 10px; }
+.terminal-input-line { display: flex; align-items: center; }
+.terminal-input-line span { margin-right: 15px; color: #0f0; font-weight: bold; }
+#terminal-input { background: transparent; border: none; color: #0f0; font-family: 'Share Tech Mono', monospace; font-size: 1.2rem; flex: 1; outline: none; cursor: none; text-shadow: 0 0 3px rgba(0, 255, 0, 0.5); }
+#hacked-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(150, 0, 0, 0.95); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100001; }
+#hacked-screen h1 { font-size: 5rem; color: #fff; text-shadow: 3px 3px 0 #000; font-family: 'Orbitron', sans-serif; }
+#hacked-screen p { color: #fff; font-size: 1.5rem; font-family: 'Share Tech Mono', monospace; margin-top: 20px; background: rgba(0,0,0,0.8); padding: 10px; }
+.hidden { display: none !important; }
+
+/* --- EFEKTLER (İMLEÇ, FADE-IN, GLITCH, PROGRESS BAR) --- */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.scroll-progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #00fff0; box-shadow: 0 0 8px rgba(0, 255, 240, 0.5); z-index: 9999; }
+.cursor-dot { width: 6px; height: 6px; background-color: #00fff0; box-shadow: 0 0 5px rgba(0, 255, 240, 0.6); position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 100000; pointer-events: none; }
+.cursor-outline { width: 30px; height: 30px; border: 1px solid rgba(0, 255, 240, 0.8); box-shadow: 0 0 8px rgba(0, 255, 240, 0.3); transition: transform 0.1s ease-out, width 0.2s, height 0.2s; position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 100000; pointer-events: none; }
+.cursor-hover { width: 45px; height: 45px; background-color: rgba(0, 255, 240, 0.1); border-color: rgba(0, 255, 240, 0.5); box-shadow: 0 0 10px rgba(0,255,240,0.2); }
+.glitch { position: relative; display: inline-block; }
+.glitch:hover::before, .glitch:hover::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
+.glitch:hover::before { left: 2px; text-shadow: -1px 0 rgba(255, 0, 0, 0.7); animation: glitch-anim-1 0.2s infinite linear alternate-reverse; }
+.glitch:hover::after { left: -2px; text-shadow: -1px 0 rgba(0, 0, 255, 0.7); animation: glitch-anim-2 0.3s infinite linear alternate-reverse; }
+@keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 50% { clip-path: inset(60% 0 10% 0); } 100% { clip-path: inset(10% 0 60% 0); } }
+@keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 50% { clip-path: inset(30% 0 20% 0); } 100% { clip-path: inset(80% 0 5% 0); } }
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+    nav { flex-direction: column; align-items: center; gap: 15px; padding: 15px; }
+    header h1 { font-size: 2rem; }
+    .container { margin: 20px; padding: 25px; }
+    .projects-grid { flex-direction: column; }
+    #hacked-screen h1 { font-size: 3rem; }
+    #terminal-btn { bottom: 15px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
 }

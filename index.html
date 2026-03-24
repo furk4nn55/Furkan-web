@@ -3,50 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kişisel Web Sitem</title>
-    <!-- CSS bağlama -->
+    <title>Furkan Şahin | Cyber Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="hacked-screen" class="hidden">
+        <h1 class="glitch" data-text="SİSTEME SIZILDI">SİSTEME SIZILDI</h1>
+        <p>GİZLİ PROTOKOL AKTİF: FURKAN.EXE ÇALIŞTIRILIYOR...</p>
+    </div>
+
+    <div id="terminal-overlay" class="hidden">
+        <div id="terminal-output"></div>
+        <div class="terminal-input-line">
+            <span>root@furkan:~#</span> 
+            <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+
+    <div class="scroll-progress-bar" id="scroll-bar"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
     <nav>
-        <a href="#hakkimda">Hakkımda</a>
-        <a href="#yetenekler">Yetenekler</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#hakkimda" class="sound-hover">Hakkımda</a>
+        <a href="#yetenekler" class="sound-hover">Yetenekler</a>
+        <a href="#projeler" class="sound-hover">Projeler</a>
+        <a href="#iletisim" class="sound-hover">İletişim</a>
     </nav>
 
     <header>
-        <img src="img-1645.jpeg" alt="Furkan Şahin Profil Fotoğrafı">
-        <h1>Merhaba, Ben FURKAN ŞAHİN</h1>
-        <p>Geleceğin Yazılımcısı / Tasarımcı / Öğrenci</p>
+        <img src="img-1645.jpeg" alt="Furkan Şahin" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+        <h1 class="glitch" data-text="Merhaba, Ben FURKAN ŞAHİN">Merhaba, Ben FURKAN ŞAHİN</h1>
+        <p id="typing-text" class="typing-container"></p>
+        <br>
+        <a href="cv.pdf" download class="btn sound-click">📄 CV İndir</a>
     </header>
 
-    <div id="hakkimda" class="container">
+    <div id="hakkimda" class="container fade-in" data-tilt data-tilt-max="2" data-tilt-speed="400">
         <h2>Hakkımda</h2>
-        <p>Oyun oynamayı ve teknoloji ile uğraşmayı seviyorum</p>
+        <p>Oyun oynamayı ve teknoloji ile uğraşmayı seviyorum. Yenilikçi tasarımlar ve temiz kod yazmak en büyük tutkum. Sürekli kendimi geliştirmeye ve yeni teknolojiler öğrenmeye odaklanıyorum.</p>
     </div>
 
-    <div id="yetenekler" class="container">
+    <div id="yetenekler" class="container fade-in" data-tilt data-tilt-max="2" data-tilt-speed="400">
         <h2>Yeteneklerim</h2>
         <ul>
-            <li>HTML & CSS</li>
-            <li>Problem Çözme</li>
-            <li>C Programlama Dili</li>
-            <li>Takım Çalışması</li>
+            <li class="sound-hover">HTML & CSS</li>
+            <li class="sound-hover">Problem Çözme</li>
+            <li class="sound-hover">C Programlama Dili</li>
+            <li class="sound-hover">Takım Çalışması</li>
+            <li class="sound-hover">JavaScript</li>
         </ul>
     </div>
 
-    <div id="iletisim" class="container">
+    <div id="projeler" class="container fade-in" data-tilt data-tilt-max="2" data-tilt-speed="400">
+        <h2>Projelerim</h2>
+        <div class="projects-grid">
+            <div class="project-card sound-hover" data-tilt data-tilt-scale="1.05">
+                <h3>Portfolyo Sitem</h3>
+                <p>Kendi yeteneklerimi sergilediğim, cam efektli ve siberpunk temalı kişisel web sitem.</p>
+                <a href="#" class="btn btn-small sound-click">İncele</a>
+            </div>
+            <div class="project-card sound-hover" data-tilt data-tilt-scale="1.05">
+                <h3>Örnek Proje 2</h3>
+                <p>C programlama dili ile geliştirdiğim temel bir algoritma uygulaması.</p>
+                <a href="#" class="btn btn-small sound-click">GitHub'da Gör</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="iletisim" class="container fade-in" data-tilt data-tilt-max="2" data-tilt-speed="400">
         <h2>İletişim</h2>
         <p>Bana her zaman aşağıdaki kanallardan ulaşabilirsiniz:</p>
         <p>📧 E-posta: furk4nwoo@gmail.com</p>
-        <a href="https://www.linkedin.com/in/furkan-%C5%9Fahin-00728338b" class="btn">LinkedIn Profilim</a>
-        <a href="https://www.instagram.com/furk4nsahnn?igsh=MW5jbDl6aHkzN2d2NQ%3D%3D&utm_source=qr" class="btn">Instagram Profilim</a>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/furkan-%C5%9Fahin-00728338b" target="_blank" class="btn sound-click">LinkedIn</a>
+            <a href="https://www.instagram.com/furk4nsahnn" target="_blank" class="btn sound-click">Instagram</a>
+        </div>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Adınız Soyadınız" required class="sound-hover">
+            <input type="email" placeholder="E-posta Adresiniz" required class="sound-hover">
+            <textarea placeholder="Mesajınız..." rows="4" required class="sound-hover"></textarea>
+            <button type="submit" class="btn sound-click">Gönder</button>
+        </form>
     </div>
 
     <footer>
         <p>© 2026 FURKAN ŞAHİN - Tüm Hakları Saklıdır.</p>
     </footer>
 
+    <button id="terminal-btn" title="Sistem Terminali">_</button>FURKAN
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <script>
+        // --- 1. SİBERPUNK SES EFEKTLERİ ---
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+
+        function playTone(freq, type, duration, vol) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        document.querySelectorAll('.sound-hover, a, .btn').forEach(el => {
+            el.addEventListener('mouseenter', () => playTone(800, 'sine', 0.1, 0.02));
+        });
+        document.querySelectorAll('.sound-click, a, button').forEach(el => {
+            el.addEventListener('click', () => playTone(300, 'square', 0.15, 0.05));
+        });
+
+        // --- 2. EASTER EGG (GİZLİ ŞİFRE: furkan) ---
+        let secretCode = ['f','u','r','k','a','n'];
+        let keyBuffer = [];
+        window.addEventListener('keydown', (e) => {
+            if(!document.getElementById('terminal-overlay').classList.contains('hidden')) return;
+
+            keyBuffer.push(e.key.toLowerCase());
+            if(keyBuffer.length > secretCode.length) keyBuffer.shift();
+            
+            if(keyBuffer.join('') === secretCode.join('')) {
+                const hackedScreen = document.getElementById('hacked-screen');
+                hackedScreen.classList.remove('hidden');
+                playTone(150, 'sawtooth', 2, 0.1); 
+                setTimeout(() => { hackedScreen.classList.add('hidden'); }, 4000);
+                keyBuffer = [];
+            }
+        });
+
+        // --- 3. GİZLİ TERMİNAL MODU ---
+        const termBtn = document.getElementById('terminal-btn');
+        const termOverlay = document.getElementById('terminal-overlay');
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+
+        termBtn.addEventListener('click', () => {
+            termOverlay.classList.remove('hidden');
+            termInput.focus();
+            if(termOutput.innerHTML === "") {
+                termOutput.innerHTML = "FurkanOS v2.0 başlatılıyor...\nSistem erişimi sağlandı.\nKomutları görmek için 'help' yazın.\n";
+            }
+        });
+
+        termInput.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') {
+                const val = termInput.value.trim().toLowerCase();
+                termOutput.innerHTML += `\nroot@furkan:~# ${val}\n`;
+                
+                if(val === 'help') termOutput.innerHTML += "Mevcut Komutlar: \n- hakkimda\n- iletisim\n- yetenekler\n- clear\n- exit\n";
+                else if(val === 'hakkimda') termOutput.innerHTML += "> Geleceğin Yazılımcısı, Tasarımcı, Öğrenci.\n";
+                else if(val === 'iletisim') termOutput.innerHTML += "> E-Posta: furk4nwoo@gmail.com\n";
+                else if(val === 'yetenekler') termOutput.innerHTML += "> HTML, CSS, C, JS, Problem Çözme\n";
+                else if(val === 'clear') termOutput.innerHTML = "";
+                else if(val === 'exit') termOverlay.classList.add('hidden');
+                else if(val !== "") termOutput.innerHTML += `> Hata: '${val}' tanınmayan komut.\n`;
+                
+                termInput.value = '';
+                termOverlay.scrollTop = termOverlay.scrollHeight; 
+            }
+        });
+
+        // --- 4. 3D PARÇACIK AĞI ---
+        const canvas = document.getElementById("particle-canvas");
+        const ctx = canvas.getContext("2d");
+        let particlesArray = [];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x; mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x; this.y = y; this.directionX = directionX; this.directionY = directionY; this.size = size; this.color = color;
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = '#00fff0'; ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < mouse.radius + this.size){
+                    if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 3;
+                    if(mouse.x > this.x && this.x > this.size * 10) this.x -= 3;
+                    if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 3;
+                    if(mouse.y > this.y && this.y > this.size * 10) this.y -= 3;
+                }
+                this.x += this.directionX; this.y += this.directionY; this.draw();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 2) - 1; let directionY = (Math.random() * 2) - 1;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, '#00fff0'));
+            }
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        let opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = 'rgba(0, 255, 240,' + opacityValue + ')'; ctx.lineWidth = 1;
+                        ctx.beginPath(); ctx.moveTo(particlesArray[a].x, particlesArray[a].y); ctx.lineTo(particlesArray[b].x, particlesArray[b].y); ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0,0,innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); }
+            connectParticles();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth; canvas.height = innerHeight; initParticles();
+        });
+        initParticles(); animateParticles();
+
+        // --- 5. DAKTİLO, FADE-IN, İMLEÇ VE SCROLLBAR ---
+        const text = "Geleceğin Yazılımcısı / Tasarımcı / Öğrenci";
+        const typingElement = document.getElementById("typing-text");
+        let txtIndex = 0;
+        function typeWriter() {
+            if (txtIndex < text.length) {
+                typingElement.innerHTML += text.charAt(txtIndex);
+                txtIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        window.onload = typeWriter;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        });
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            scrollBar.style.width = ((window.scrollY / scrollTotal) * 100) + '%';
+        });
+
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
+            cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+        });
+        document.querySelectorAll('a, button, input, textarea, img, li').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('cursor-hover'));
+        });
+    </script>
 </body>
 </html>
